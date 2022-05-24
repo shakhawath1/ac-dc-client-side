@@ -11,7 +11,7 @@ const Login = () => {
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
 
     // email & password log in
-    const { register, formState: { errors }, handleSubmit } = useForm();
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
     const [
         signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
     let signInError;
@@ -29,7 +29,8 @@ const Login = () => {
     }
     const onSubmit = data => {
         console.log(data)
-        signInWithEmailAndPassword(data.email, data.password)
+        signInWithEmailAndPassword(data.email, data.password);
+        reset();
     };
 
     return (
