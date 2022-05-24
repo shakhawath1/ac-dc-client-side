@@ -11,7 +11,7 @@ import Navbar from './Pages/Shared/Navbar';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-purple-200">
       <Navbar></Navbar>
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
@@ -21,7 +21,7 @@ function App() {
         <Route path='/my-portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/home' element={<SignUp></SignUp>}></Route>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>
       <Footer></Footer>
     </div>

@@ -3,6 +3,7 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -32,8 +33,8 @@ const Login = () => {
     };
 
     return (
-        <div className='flex justify-center h-screen items-center'>
-            <div className="card w-96 bg-base-100 shadow-xl">
+        <div className='flex justify-center items-center'>
+            <div className="card w-96 bg-base-100 shadow-xl my-5">
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Log In</h2>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -103,14 +104,15 @@ const Login = () => {
                         </div>
                         <input className='btn w-full amx-w-xs' type="submit" value='log in' />
                     </form>
+
+                    {/* not have an account */}
                     <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                         Don't have an account?
-                        <a
-                            href="#!"
-                            className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out ml-2"
-                        >Create an Account</a>
+                        <Link className='text-rose-500 ml-2' to="/signup">Create an Account</Link>
                     </p>
                     <div className="divider">OR</div>
+
+                    {/* google sign in */}
                     <button
                         onClick={() => signInWithGoogle()}
                         className="btn btn-outline">Continue with google</button>
