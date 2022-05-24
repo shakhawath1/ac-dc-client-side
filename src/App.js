@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import About from './Pages/About/About';
 import AllProducts from './Pages/AllProducts/AllProducts';
 import Blogs from './Pages/Blogs/Blogs';
 import Home from './Pages/Home/Home';
@@ -18,6 +19,7 @@ function App() {
         <Route path='/all-products' element={<AllProducts></AllProducts>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/my-portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/home' element={<SignUp></SignUp>}></Route>
       </Routes>
