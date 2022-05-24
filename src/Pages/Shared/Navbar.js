@@ -6,7 +6,6 @@ import { signOut } from 'firebase/auth';
 
 const Navbar = () => {
     const [user] = useAuthState(auth);
-
     const logout = () => {
         signOut(auth);
         // localStorage.removeItem('accessToken');
@@ -16,14 +15,14 @@ const Navbar = () => {
     const menuItems = <>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/all-products">All Products</Link></li>
-        <li><Link to="/Blogs">Blogd</Link></li>
+        <li><Link to="/Blogs">Blogs</Link></li>
         <li><Link to="/my-portfolio">My Portfolio</Link></li>
         <li><Link to="/about">About</Link></li>
         {
             user && <li><Link to="/dashboard">Dashboard</Link></li>
         }
         {
-            user && <p className='text-fuchsia-600 my-auto'>{user.displayName}</p>
+            user && <p className='text-fuchsia-600 my-auto ml-10'>{user.displayName}</p>
         }
         <li>{user ? <button className="btn btn-ghost" onClick={logout} >Sign Out</button> : <Link to="/login">Login</Link>}</li>
     </>
