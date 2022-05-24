@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import './App.css';
 import AllProducts from './Pages/AllProducts/AllProducts';
 import Blogs from './Pages/Blogs/Blogs';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import SignUp from './Pages/Login/SignUp';
 import MyPortfolio from './Pages/MyPortfolio/MyPortfolio';
+import Footer from './Pages/Shared/Footer';
 import Navbar from './Pages/Shared/Navbar';
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/home' element={<SignUp></SignUp>}></Route>
       </Routes>
-
+      <Footer></Footer>
     </div>
   );
 }
