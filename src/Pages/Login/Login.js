@@ -1,19 +1,24 @@
-import React from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import React, { useRef } from 'react';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { useForm } from "react-hook-form";
 import Loading from '../Shared/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Login = () => {
+    const emailRef = useRef()
     // google login
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth, { sendEmailVerification: true });
 
     // email & password log in
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const [
-        signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+    const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
+
+    // password reset methode 
+    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
 
     let signInError;
     const navigate = useNavigate();
@@ -28,7 +33,7 @@ const Login = () => {
         signInError = <p className='text-red-500'><small>{error?.message || gError?.message}</small></p>
     };
 
-    if (loading || gLoading) {
+    if (loading || gLoading || sending) {
         return <Loading></Loading>
     }
     const onSubmit = data => {
@@ -36,19 +41,32 @@ const Login = () => {
         reset();
     };
 
+    //  handle password reset methode 
+    const resetPassword = async () => {
+        const email = emailRef?.current?.value;
+        console.log(email)
+        if (email) {
+            await sendPasswordResetEmail(email);
+            toast('Sent email');
+        }
+        else {
+            toast('please enter your email address');
+        }
+    };
+
     return (
         <div className='flex justify-center items-center'>
             <div className="card w-96 bg-base-100 shadow-xl my-5">
                 <div className="card-body">
                     <h2 className="text-center text-2xl font-bold">Log In</h2>
-                    <form onSubmit={handleSubmit(onSubmit)}>
+                    <form onSubmit={handleSubmit(onSubmit)} >
 
                         {/* email input-field */}
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input
+                            <input ref={emailRef}
                                 type="email" placeholder="Email"
                                 className="input input-bordered w-full max-w-xs"
                                 {...register("email", {
@@ -100,11 +118,10 @@ const Login = () => {
                                     <span className="label-text">Remember me</span>
                                 </label>
                             </div>
-                            <a
-                                href="#!"
+                            <button
+                                onClick={resetPassword}
                                 className="text-blue-600 hover:text-blue-700 focus:text-blue-700 active:text-blue-800 duration-200 transition ease-in-out"
-                            >Forgot password?</a
-                            >
+                            >Forgot password?</button>
                         </div>
                         <input className='btn w-full amx-w-xs' type="submit" value='log in' />
                     </form>
@@ -121,7 +138,10 @@ const Login = () => {
                         onClick={() => signInWithGoogle()}
                         className="btn btn-outline">Continue with google</button>
                 </div>
+                {/* password reset toast  */}
+                <ToastContainer />
             </div>
+
         </div>
     );
 };

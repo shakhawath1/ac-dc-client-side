@@ -8,11 +8,11 @@ const Products = () => {
 
 
     return (
-        <div>
-            <h3 className='text-2xl text-center font-bold text-rose-800'>Our Products</h3>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-8 m-10'>
+        <div className='my-10'>
+            <h3 className='text-3xl text-center font-bold text-rose-800'>Our Products</h3>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center gap-8 m-8'>
                 {
-                    homeProducts.map(product => <Product key={product.id} product={product}></Product>)
+                    homeProducts.map(product => <Product key={product._id} product={product}></Product>)
                 }
             </div>
         </div>

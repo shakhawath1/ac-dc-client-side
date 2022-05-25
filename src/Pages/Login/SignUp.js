@@ -7,11 +7,11 @@ import Loading from '../Shared/Loading';
 
 const SignUp = () => {
     // google login
-    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
+    const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth, { sendEmailVerification: true });
 
     // email & password log in
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
 
     // update profile 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
