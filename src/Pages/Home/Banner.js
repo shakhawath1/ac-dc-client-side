@@ -1,14 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import banner from '../../images/banner.jpg'
 
 const Banner = () => {
+    const navigate = useNavigate();
+
     return (
-        <div className="card lg:card-side bg-base-100 shadow-xl mx-20 my-10">
-            <figure><img src="https://api.lorem.space/image/album?w=400&h=400" alt="Album" /></figure>
-            <div className="card-body">
-                <h2 className="card-title">New album is released!</h2>
-                <p>Click the button to listen on Spotiwhy app.</p>
-                <div className="card-actions justify-start">
-                    <button className="btn btn-accent">Join with us</button>
+        <div className="hero bg-base-200 my-6">
+            <div className="hero-content flex-col lg:flex-row">
+                <img src={banner} className="lg:max-w-md rounded-lg shadow-2xl w-80 md:w-96 lg:w-full" alt='' />
+                <div className='mx-6'>
+                    <h1 className="text-4xl font-bold">The Best Electronics Components Here...</h1>
+                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <button onClick={() => navigate('/login')} className="btn">Join with us</button>
                 </div>
             </div>
         </div>
