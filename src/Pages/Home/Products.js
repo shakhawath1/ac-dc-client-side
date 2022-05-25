@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useProducts from '../../hooks/useProducts';
 import Product from '../AllProducts/Product';
 
@@ -14,6 +15,9 @@ const Products = () => {
                 {
                     homeProducts.map(product => <Product key={product._id} product={product}></Product>)
                 }
+            </div>
+            <div className='flex justify-center'>
+                <Link to="/all-products" className='btn'>view all products</Link>
             </div>
         </div>
     );
