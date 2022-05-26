@@ -22,7 +22,7 @@ const Product = ({ product }) => {
                 <div className="card-actions justify-end">
                     <button
                         onClick={() => navigateToPurchase(_id)}
-                        className="btn">Order Now</button>
+                        className="btn" disabled={parseInt(available) < parseInt(minimum_order)}>Order Now</button>
                 </div>
             </div>
         </div>
