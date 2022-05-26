@@ -12,7 +12,7 @@ const Purchase = ({ refetch }) => {
     const [user] = useAuthState(auth)
 
     useEffect(() => {
-        const url = `http://localhost:5000/product/${Id}`;
+        const url = `https://sheltered-cliffs-05732.herokuapp.com/product/${Id}`;
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
@@ -40,7 +40,7 @@ const Purchase = ({ refetch }) => {
         };
         console.log(order)
 
-        fetch('http://localhost:5000/order', {
+        fetch('https://sheltered-cliffs-05732.herokuapp.com/order', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -92,7 +92,6 @@ const Purchase = ({ refetch }) => {
                             </div>
                             <input type="submit" value='place order' class="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order) || parseInt(quantity) > parseInt(available) || quantity === ''} />
                         </form>
-
                     </div>
                 </div>
             </div>
