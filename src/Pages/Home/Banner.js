@@ -1,18 +1,35 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import banner from '../../images/banner.jpg'
+import banner0 from '../../images/banner/banner0.avif'
+import banner1 from '../../images/banner/banner1.webp'
+import banner2 from '../../images/banner/banner2.jpg'
+
+
+
 
 const Banner = () => {
-    const navigate = useNavigate();
+
 
     return (
-        <div className="hero bg-base-200 my-6">
-            <div className="hero-content flex-col lg:flex-row">
-                <img src={banner} className="lg:max-w-md rounded-lg shadow-2xl w-80 md:w-96 lg:w-full" alt='' />
-                <div className='mx-6'>
-                    <h1 className="text-4xl font-bold">The Best Electronics Components Here...</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button onClick={() => navigate('/login')} className="btn">Join with us</button>
+        <div class="carousel my-2">
+            <div id="slide1" class="carousel-item relative w-full">
+                <img src={banner0} class="w-full h-96" alt='' />
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide4" class="btn btn-circle">❮</a>
+                    <a href="#slide2" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide2" class="carousel-item relative w-full">
+                <img src={banner1} class="w-full h-96" alt='' />
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide1" class="btn btn-circle">❮</a>
+                    <a href="#slide3" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide3" class="carousel-item relative w-full">
+                <img src={banner2} class="w-full h-96" alt='' />
+                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide2" class="btn btn-circle">❮</a>
+                    <a href="#slide4" class="btn btn-circle">❯</a>
                 </div>
             </div>
         </div>

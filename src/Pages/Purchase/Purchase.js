@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const Purchase = () => {
+const Purchase = ({ refetch }) => {
     const { Id } = useParams();
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState(0);
-    const { img, name, price, available, minimum_order } = product;
+    const { _id, img, name, price, available, minimum_order } = product;
     const [user] = useAuthState(auth)
 
     useEffect(() => {
@@ -19,13 +20,43 @@ const Purchase = () => {
 
 
     const searchQuantity = e => {
-        setQuantity(e.target.value)
-    }
-    const totalprice = parseInt(price) * quantity;
+        setQuantity(e.target.value);
+    };
+
+    const totalPrice = parseInt(price) * quantity;
 
     const handleOrder = event => {
         event.preventDefault();
         // const quantity = event.target.quantity.value;
+        const order = {
+            productId: _id,
+            name: name,
+            totalPrice,
+            quantity,
+            clientName: user.displayName,
+            email: user.email,
+            phone: event.target.phone.value,
+            address: event.target.address.value
+        };
+        console.log(order)
+
+        fetch('http://localhost:5000/order', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                if (data.success) {
+                    toast('Successfully added!')
+                }
+
+
+                refetch();
+            });
     };
 
     return (
@@ -49,17 +80,17 @@ const Purchase = () => {
                         <form onSubmit={handleOrder} className='grid grid-cols-1 gap-4'>
                             <input type="text" value={user.displayName} class="input input-bordered w-full" />
                             <input type="text" value={user.email} class="input input-bordered w-full" />
-                            <input type="text" placeholder="Phone" class="input input-bordered w-full" required />
-                            <input type="text" placeholder="Shipping adderss" class="input input-bordered w-full" required />
+                            <input type="text" name='phone' placeholder="Phone" class="input input-bordered w-full" required />
+                            <input type="text" name='address' placeholder="Shipping adderss" class="input input-bordered w-full" required />
                             <div>
                                 <label class="my-2">Quantity</label>
-                                <input type="text" onBlur={searchQuantity} placeholder={minimum_order} class="input input-bordered w-full" />
+                                <input type="number" onBlur={searchQuantity} placeholder={minimum_order} class="input input-bordered w-full" />
                             </div>
                             <div>
                                 <label class="mb-2">Total Price</label>
-                                <input type="text" value={totalprice} className="input input-bordered w-full" />
+                                <input type="text" value={totalPrice} className="input input-bordered w-full text-2xl" />
                             </div>
-                            <input type="submit" value='place order' class="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order) || parseInt(quantity) > parseInt(available)} />
+                            <input type="submit" value='place order' class="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order) || parseInt(quantity) > parseInt(available) || quantity === ''} />
                         </form>
 
                     </div>

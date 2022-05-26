@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RequirAdmin = () => {
+const RequireAdmin = () => {
     return (
         <div>
 
@@ -8,4 +8,4 @@ const RequirAdmin = () => {
     );
 };
 
-export default RequirAdmin;
+export default RequireAdmin;
