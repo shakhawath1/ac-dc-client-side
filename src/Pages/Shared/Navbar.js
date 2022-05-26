@@ -8,7 +8,7 @@ const Navbar = () => {
     const [user] = useAuthState(auth);
     const logout = () => {
         signOut(auth);
-        // localStorage.removeItem('accessToken');
+        localStorage.removeItem('accessToken');
     };
 
     // menu items

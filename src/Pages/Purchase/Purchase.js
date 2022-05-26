@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useParams } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -6,19 +6,22 @@ import auth from '../../firebase.init';
 const Purchase = () => {
     const { Id } = useParams();
     const [product, setProduct] = useState({});
+    const [quantity, setQuantity] = useState(0);
     const { img, name, price, available, minimum_order } = product;
     const [user] = useAuthState(auth)
 
     useEffect(() => {
         const url = `http://localhost:5000/product/${Id}`;
-        console.log(url)
         fetch(url)
             .then(res => res.json())
             .then(data => setProduct(data));
     }, [Id]);
 
-    const quantiytRef = useRef('');
-    const quantity = quantiytRef.current.value;
+
+    const searchQuantity = e => {
+        setQuantity(e.target.value)
+    }
+    const totalprice = parseInt(price) * quantity;
 
     const handleOrder = event => {
         event.preventDefault();
@@ -50,13 +53,13 @@ const Purchase = () => {
                             <input type="text" placeholder="Shipping adderss" class="input input-bordered w-full" required />
                             <div>
                                 <label class="my-2">Quantity</label>
-                                <input type="text" ref={quantiytRef} placeholder={minimum_order} class="input input-bordered w-full" />
+                                <input type="text" onBlur={searchQuantity} placeholder={minimum_order} class="input input-bordered w-full" />
                             </div>
                             <div>
                                 <label class="mb-2">Total Price</label>
-                                <input type="text" value={parseInt(price) * parseInt(quantity)} className="input input-bordered w-full" />
+                                <input type="text" value={totalprice} className="input input-bordered w-full" />
                             </div>
-                            <input type="submit" value='place order' class="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order)} />
+                            <input type="submit" value='place order' class="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order) || parseInt(quantity) > parseInt(available)} />
                         </form>
 
                     </div>
