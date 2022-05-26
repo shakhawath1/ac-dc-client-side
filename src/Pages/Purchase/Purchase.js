@@ -31,8 +31,9 @@ const Purchase = ({ refetch }) => {
         const order = {
             productId: _id,
             name: name,
-            totalPrice,
+            price,
             quantity,
+            totalPrice,
             clientName: user.displayName,
             email: user.email,
             phone: event.target.phone.value,
