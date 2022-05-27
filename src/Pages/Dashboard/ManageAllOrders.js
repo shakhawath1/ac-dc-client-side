@@ -40,17 +40,17 @@ const ManageAllOrders = () => {
 
     return (
         <div>
-            <h3 className='text-3xl text-center mb-6'>My Order:{orders.length}</h3>
+            <h3 className='text-3xl text-center mb-6'>All Orders: {orders.length}</h3>
             <div class="overflow-x-auto mx-3">
                 <table class="table table-compact w-full">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th className='text-center'>Name</th>
-                            <th className='text-center'>Unite Price</th>
-                            <th className='text-center'>Quantity</th>
-                            <th className='text-center'>Total Price</th>
-                            <th className='text-center'>Pamayent Status</th>
+                            <th className='text-center'>Client Name</th>
+                            <th className='text-center'>Email</th>
+                            <th className='text-center'>Product Name</th>
+                            <th className='text-center'>Payment Staus</th>
+                            <th className='text-center'>Order Status</th>
                             <th className='text-center'>Cencel Order</th>
                         </tr>
                     </thead>
@@ -58,11 +58,11 @@ const ManageAllOrders = () => {
                         {
                             orders.map((order, index) => <tr>
                                 <th>{index + 1}</th>
-                                <td>{order.name}</td>
-                                <td className='text-center'>{order.price}</td>
-                                <td className='text-center'>{order.quantity}</td>
-                                <td className='text-center'>{order.totalPrice}</td>
-                                <td className='text-center'><button onClick={() => orderDelete(order._id)} class="btn btn-sm btn-accent btn-outline">Pay Now</button></td>
+                                <td>{order.clientName}</td>
+                                <td className='text-center'>{order.email}</td>
+                                <td className='text-center'>{order.name}</td>
+                                <td className='text-center'>Pending</td>
+                                <td className='text-center'><button onClick={() => orderDelete(order._id)} class="btn btn-sm btn-accent btn-outline">Pending</button></td>
                                 <td className='text-center'><button onClick={() => handlePayment(order._id)} class="btn btn-sm btn-ghost">Cencel</button></td>
                             </tr>
                             )
