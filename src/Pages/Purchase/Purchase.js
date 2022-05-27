@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
-const Purchase = ({ refetch }) => {
+const Purchase = () => {
     const { Id } = useParams();
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState(0);
@@ -43,7 +43,8 @@ const Purchase = ({ refetch }) => {
         fetch('https://sheltered-cliffs-05732.herokuapp.com/order', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(order)
         })
@@ -52,9 +53,6 @@ const Purchase = ({ refetch }) => {
                 if (data.success) {
                     toast('Successfully added!')
                 }
-
-
-                refetch();
             });
     };
 

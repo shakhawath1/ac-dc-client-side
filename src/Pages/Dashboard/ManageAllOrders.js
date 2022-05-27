@@ -8,7 +8,7 @@ const ManageAllOrders = () => {
 
     useEffect(() => {
 
-        fetch('http://localhost:5000/order/', {
+        fetch('https://sheltered-cliffs-05732.herokuapp.com/order/', {
             method: 'GET',
             headers: {
                 'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -23,7 +23,7 @@ const ManageAllOrders = () => {
     const orderCencel = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://sheltered-cliffs-05732.herokuapp.com/order/${id}`;
             fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -68,8 +68,8 @@ const ManageAllOrders = () => {
                                 <td className='text-center'>{order.email}</td>
                                 <td className='text-center'>{order.name}</td>
                                 <td className='text-center'>Pending</td>
-                                <td className='text-center'><button onClick={() => handlePayment(order._id)} className="btn btn-sm btn-accent btn-outline">Pending</button></td>
-                                <td className='text-center'><button onClick={() => orderCencel(order._id)} className="btn btn-sm btn-error btn-outline">Cencel</button></td>
+                                <td className='text-center'><button onClick={() => handlePayment(order._id)} className="btn btn-xs btn-accent btn-outline">Pending</button></td>
+                                <td className='text-center'><button onClick={() => orderCencel(order._id)} className="btn btn-xs btn-error btn-outline">Cencel</button></td>
                             </tr>
                             )
                         }

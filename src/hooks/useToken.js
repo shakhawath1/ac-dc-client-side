@@ -4,7 +4,8 @@ const useToken = user => {
     const [token, setToken] = useState('');
     useEffect(() => {
         const email = user?.user?.email;
-        const currentUser = { email: email };
+        const name = user?.user?.displayName;
+        const currentUser = { email: email, name: name };
         if (email) {
             fetch(`https://sheltered-cliffs-05732.herokuapp.com/user/${email}`, {
                 method: 'PUT',
@@ -15,7 +16,6 @@ const useToken = user => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log('data inside useToken', data)
                     const accessToken = data.token;
                     localStorage.setItem('accessToken', accessToken);
                     setToken(accessToken)
