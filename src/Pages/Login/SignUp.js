@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -16,8 +16,8 @@ const SignUp = () => {
 
     // update profile 
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
-
     const [token] = useToken(user || gUser);
+    const [agree, setAgree] = useState(false);
 
     let signInError;
     const navigate = useNavigate();
@@ -120,17 +120,11 @@ const SignUp = () => {
 
                         {signInError}
 
-                        <div className="flex justify-between items-center mb-6">
-                            <div className="form-control">
-                                <label className="label cursor-pointer">
-                                    <input type="checkbox" className="checkbox checkbox-accent checkbox-xs mr-2" />
-                                    <span className="label-text">Remember me</span>
-                                </label>
-                            </div>
-                        </div>
 
+                        <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                        <label className={`ml-2 ${agree ? 'text-green-500' : 'text-red-500'}`} htmlFor="terms">Accept AC||DC Terms and Conditions</label>
                         {/* sign up button  */}
-                        <input className='btn w-full amx-w-xs' type="submit" value='sign up' />
+                        <input className='btn w-full amx-w-xs mt-2' type="submit" value='sign up' disabled={!agree} />
                     </form>
                     <p className="text-sm font-semibold mt-2 pt-1 mb-0">
                         Already have an account?
