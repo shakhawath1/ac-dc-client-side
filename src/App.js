@@ -43,8 +43,8 @@ function App() {
         <Route path='/my-portfolio' element={<MyPortfolio></MyPortfolio>}></Route>
         <Route path='/about' element={<About></About>}></Route>
         <Route path='/dashboard' element={<RequireAuth><Dashboard></Dashboard></RequireAuth>}>
-          <Route index element={<MyOrder></MyOrder>}></Route>
-          <Route path="profile" element={<MyProfile></MyProfile>}></Route>
+          <Route path="myOrder" element={<MyOrder></MyOrder>}></Route>
+          <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="addReview" element={<AddReview></AddReview>}></Route>
           <Route path="payment/:id" element={<Payment></Payment>}></Route>
           <Route path="manage-all-orders" element={<RequireAdmin><ManageAllOrders></ManageAllOrders></RequireAdmin>}></Route>

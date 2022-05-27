@@ -8,7 +8,7 @@ const Purchase = () => {
     const { Id } = useParams();
     const [product, setProduct] = useState({});
     const [quantity, setQuantity] = useState(0);
-    const { _id, img, name, price, available, minimum_order } = product;
+    const { _id, img, name, description, price, available, minimum_order } = product;
     const [user] = useAuthState(auth)
 
     useEffect(() => {
@@ -31,6 +31,7 @@ const Purchase = () => {
         const order = {
             productId: _id,
             name: name,
+            description,
             price,
             quantity,
             totalPrice,
@@ -65,9 +66,10 @@ const Purchase = () => {
                     <div className="card-body">
                         <h2 className="card-title">{name}</h2>
                         <div>
-                            <p>Price: {price}</p>
-                            <p>Available: {available}</p>
-                            <p>Minimum Order: {minimum_order}</p>
+                            <p>Price: {description}</p>
+                            <p className='font-semibold'>Price: {price}</p>
+                            <p className='font-semibold'>Available: {available}</p>
+                            <p className='font-semibold'>Minimum Order: {minimum_order}</p>
                         </div>
                     </div>
                 </div>
