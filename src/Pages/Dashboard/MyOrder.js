@@ -8,7 +8,7 @@ const MyOrder = () => {
 
     useEffect(() => {
         if (user) {
-            const url = `http://localhost:5000/order/${user.email}`;
+            const url = `https://sheltered-cliffs-05732.herokuapp.com/order/${user.email}`;
             fetch(url)
                 .then(res => res.json())
                 .then(data => setOrders(data.reverse()))
@@ -19,7 +19,7 @@ const MyOrder = () => {
     const orderDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `http://localhost:5000/order/${id}`;
+            const url = `https://sheltered-cliffs-05732.herokuapp.com/order/${id}`;
             console.log(url)
             fetch(url, {
                 method: 'DELETE'
@@ -63,8 +63,8 @@ const MyOrder = () => {
                                 <td className='text-center'>{order.price}</td>
                                 <td className='text-center'>{order.quantity}</td>
                                 <td className='text-center'>{order.totalPrice}</td>
-                                <td className='text-center'><button onClick={() => orderDelete(order._id)} class="btn btn-sm btn-accent btn-outline">Pay Now</button></td>
-                                <td className='text-center'><button onClick={() => handlePayment(order._id)} class="btn btn-sm btn-ghost">Cencel</button></td>
+                                <td className='text-center'><button onClick={() => handlePayment(order._id)} class="btn btn-sm btn-accent btn-outline">Pay Now</button></td>
+                                <td className='text-center'><button onClick={() => orderDelete(order._id)} class="btn btn-sm btn-ghost">Cencel</button></td>
                             </tr>
                             )
                         }
