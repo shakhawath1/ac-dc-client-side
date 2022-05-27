@@ -1,17 +1,31 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 const MyOrder = () => {
     const [orders, setOrders] = useState([]);
     const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (user) {
-            const url = `https://sheltered-cliffs-05732.herokuapp.com/order/${user.email}`;
-            fetch(url)
-                .then(res => res.json())
-                .then(data => setOrders(data.reverse()))
+            fetch(`http://localhost:5000/order/${user.email}`, {
+                method: 'GET',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+                .then(res => {
+                    if (res.status === 401 || res.status === 403) {
+                        signOut(auth);
+                        localStorage.removeItem('accessToken');
+                        navigate('/');
+                    }
+                    return res.json()
+                })
+                .then(data => setOrders(data))
         }
     }, [user]);
 
@@ -19,14 +33,15 @@ const MyOrder = () => {
     const orderDelete = id => {
         const proceed = window.confirm('Are you sure?');
         if (proceed) {
-            const url = `https://sheltered-cliffs-05732.herokuapp.com/order/${id}`;
-            console.log(url)
+            const url = `http://localhost:5000/order/${id}`;
             fetch(url, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+                }
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
                     const remaining = orders.filter(order => order._id !== id);
                     setOrders(remaining);
                 });
@@ -42,8 +57,8 @@ const MyOrder = () => {
     return (
         <div>
             <h3 className='text-3xl text-center mb-6'>My Order:{orders.length}</h3>
-            <div class="overflow-x-auto mx-3">
-                <table class="table table-compact w-full">
+            <div className="overflow-x-auto mx-3">
+                <table className="table table-compact w-full">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -57,14 +72,14 @@ const MyOrder = () => {
                     </thead>
                     <tbody>
                         {
-                            orders.map((order, index) => <tr>
+                            orders.map((order, index) => <tr key={order._id}>
                                 <th>{index + 1}</th>
                                 <td>{order.name}</td>
                                 <td className='text-center'>{order.price}</td>
                                 <td className='text-center'>{order.quantity}</td>
                                 <td className='text-center'>{order.totalPrice}</td>
-                                <td className='text-center'><button onClick={() => handlePayment(order._id)} class="btn btn-sm btn-accent btn-outline">Pay Now</button></td>
-                                <td className='text-center'><button onClick={() => orderDelete(order._id)} class="btn btn-sm btn-ghost">Cencel</button></td>
+                                <td className='text-center'><button onClick={() => handlePayment(order._id)} className="btn btn-sm btn-accent btn-outline">Pay Now</button></td>
+                                <td className='text-center'><button onClick={() => orderDelete(order._id)} className="btn btn-sm btn-error btn-outline">Cencel</button></td>
                             </tr>
                             )
                         }

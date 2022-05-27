@@ -39,7 +39,6 @@ const Purchase = ({ refetch }) => {
             phone: event.target.phone.value,
             address: event.target.address.value
         };
-        console.log(order)
 
         fetch('https://sheltered-cliffs-05732.herokuapp.com/order', {
             method: 'POST',
@@ -50,7 +49,6 @@ const Purchase = ({ refetch }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.success) {
                     toast('Successfully added!')
                 }
@@ -75,23 +73,23 @@ const Purchase = ({ refetch }) => {
                         </div>
                     </div>
                 </div>
-                <div class="card lg:w-full bg-base-100 shadow-xl">
-                    <div class="card-body">
-                        <h2 class="card-title">Order Information</h2>
+                <div className="card lg:w-full bg-base-100 shadow-xl">
+                    <div className="card-body">
+                        <h2 className="card-title">Order Information</h2>
                         <form onSubmit={handleOrder} className='grid grid-cols-1 gap-4'>
-                            <input type="text" value={user.displayName} class="input input-bordered w-full" />
-                            <input type="text" value={user.email} class="input input-bordered w-full" />
-                            <input type="text" name='phone' placeholder="Phone" class="input input-bordered w-full" required />
-                            <input type="text" name='address' placeholder="Shipping adderss" class="input input-bordered w-full" required />
+                            <input type="text" value={user.displayName} className="input input-bordered w-full" />
+                            <input type="text" value={user.email} className="input input-bordered w-full" />
+                            <input type="text" name='phone' placeholder="Phone" className="input input-bordered w-full" required />
+                            <input type="text" name='address' placeholder="Shipping adderss" className="input input-bordered w-full" required />
                             <div>
-                                <label class="my-2">Quantity</label>
-                                <input type="number" onBlur={searchQuantity} placeholder={minimum_order} class="input input-bordered w-full" />
+                                <label className="my-2">Quantity</label>
+                                <input type="number" onBlur={searchQuantity} placeholder={minimum_order} className="input input-bordered w-full" />
                             </div>
                             <div>
-                                <label class="mb-2">Total Price</label>
+                                <label className="mb-2">Total Price</label>
                                 <input type="text" value={totalPrice} className="input input-bordered w-full text-2xl" />
                             </div>
-                            <input type="submit" value='place order' class="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order) || parseInt(quantity) > parseInt(available) || quantity === ''} />
+                            <input type="submit" value='place order' className="btn w-full" disabled={parseInt(quantity) < parseInt(minimum_order) || parseInt(quantity) > parseInt(available) || quantity === ''} />
                         </form>
                     </div>
                 </div>

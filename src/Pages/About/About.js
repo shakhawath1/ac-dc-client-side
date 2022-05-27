@@ -18,22 +18,22 @@ const About = () => {
             <div className='mx-4'>
                 <h3 className='text-4xl text-center text-emerald-600 font-bold mb-10'>BOARD OF DIRECTORS</h3>
                 <div className='grid grid-cols-1 lg:grid-cols-3 justify-items-center gap-8  text-center '>
-                    <div class="card bg-base-100 shadow-md shadow-purple-400">
+                    <div className="card bg-base-100 shadow-md shadow-purple-400">
                         <figure><img src={director1} alt="man" /></figure>
-                        <div class="card-body">
-                            <h2 class="text-xl text-cyan-800 font-bold">Jack Crockett</h2>
+                        <div className="card-body">
+                            <h2 className="text-xl text-cyan-800 font-bold">Jack Crockett</h2>
                         </div>
                     </div>
-                    <div class="card bg-base-100 shadow-md shadow-purple-400">
+                    <div className="card bg-base-100 shadow-md shadow-purple-400">
                         <figure><img src={director2} alt="man" /></figure>
-                        <div class="card-body">
-                            <h2 class="text-xl text-cyan-800 font-bold">Robin Blake</h2>
+                        <div className="card-body">
+                            <h2 className="text-xl text-cyan-800 font-bold">Robin Blake</h2>
                         </div>
                     </div>
-                    <div class="card bg-base-100 shadow-md shadow-purple-400">
+                    <div className="card bg-base-100 shadow-md shadow-purple-400">
                         <figure><img src={director3} alt="man" /></figure>
-                        <div class="card-body">
-                            <h2 class="text-xl text-cyan-800 font-bold">Drew Jordan</h2>
+                        <div className="card-body">
+                            <h2 className="text-xl text-cyan-800 font-bold">Drew Jordan</h2>
                         </div>
                     </div>
                 </div>
