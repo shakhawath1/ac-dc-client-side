@@ -16,12 +16,12 @@ const Reviews = () => {
     return (
         <div>
             <h3 className='text-2xl text-center font-bold text-rose-800'>Customer Reviews</h3>
-            <div>
+            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-4 m-10 justify-items-center'>
                 {
                     reviews.map(review => <div class="card w-96 bg-base-100 shadow-xl image-full" key={review._id}>
                         <div class="card-body">
-                            <p>{review.review}</p>
-                            <p>{review.ratings}</p>
+                            <p>Review: {review.review}</p>
+                            <p>Ratings: {review.ratings}</p>
                             <p>{review.name}</p>
 
                         </div>
