@@ -55,7 +55,7 @@ const EditProfile = () => {
                     <label className="mb-1">Name</label>
                     <input className="input input-bordered w-full mb-3" value={user.name} type='text' {...register("name", { required: true, maxLength: 20 })} required />
                     <label className="mb-1">Email</label>
-                    <input className="input input-bordered w-full mb-3" value={user.email} type='text' {...register("email")} required />
+                    <input className="input input-bordered w-full mb-3" value={user.email} type='text' {...register("email")} />
                     <label className="mb-1">Phone</label>
                     <input className="input input-bordered w-full mb-3" type="number" placeholder='Phone'  {...register("phone")} required />
                     <label className="mb-1">Address</label>

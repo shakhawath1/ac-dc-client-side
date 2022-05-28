@@ -10,6 +10,7 @@ const Dashboard = () => {
     const [admin] = useAdmin(user);
 
 
+
     return (
         <div>
             <div className="drawer drawer-mobile">
@@ -28,7 +29,7 @@ const Dashboard = () => {
 
                         {!admin && <>
                             <li><Link to="/dashboard/myOrder">My Order</Link></li>
-                            <li><Link to="/dashboard/addReview">Add Review</Link></li>
+                            <li><Link to="/dashboard/add-review">Add Review</Link></li>
                         </>}
                         {admin && <>
                             <li><Link to="/dashboard/manage-all-orders">Manage All Orders</Link></li>

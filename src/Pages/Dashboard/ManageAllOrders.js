@@ -69,7 +69,7 @@ const ManageAllOrders = () => {
                                 <td className='text-center'>{order.name}</td>
                                 <td className='text-center'>Pending</td>
                                 <td className='text-center'><button onClick={() => handlePayment(order._id)} className="btn btn-xs btn-accent btn-outline">Pending</button></td>
-                                <td className='text-center'><button onClick={() => orderCencel(order._id)} className="btn btn-xs btn-error btn-outline">Cencel</button></td>
+                                <td className='text-center'><button onClick={() => orderCencel(order._id)} className="btn btn-xs btn-error btn-outline">Cancel</button></td>
                             </tr>
                             )
                         }

@@ -4,7 +4,7 @@ import Product from './Product';
 
 const AllProducts = () => {
     const [products] = useProducts();
-    console.log(products)
+
     return (
         <div>
             <h2 className='text-2xl text-center font-bold text-slate-700 my-9'>All products</h2>

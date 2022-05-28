@@ -77,7 +77,7 @@ const MyOrder = () => {
                                 <td className='text-center'>{order.totalPrice}</td>
                                 <td className='text-center'><Link to={`/dashboard/payment/${order._id}`}>
                                     <button className="btn btn-xs btn-accent btn-outline">Pay Now</button> </Link></td>
-                                <td className='text-center'><button onClick={() => deleteOrder(order._id)} className="btn btn-xs btn-error btn-outline">Cencel</button></td>
+                                <td className='text-center'><button onClick={() => deleteOrder(order._id)} className="btn btn-xs btn-error btn-outline">Cancel</button></td>
                             </tr>
                             )
                         }
