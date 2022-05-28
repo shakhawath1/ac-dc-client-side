@@ -44,8 +44,8 @@ const ManageProducts = () => {
                                 <th>{index + 1}</th>
                                 <td>{product.name}</td>
                                 <td className='text-center'>
-                                    <div class="avatar">
-                                        <div class="w-8 rounded">
+                                    <div className="avatar">
+                                        <div className="w-8 rounded">
                                             <img src={product.img} alt="" />
                                         </div>
                                     </div>

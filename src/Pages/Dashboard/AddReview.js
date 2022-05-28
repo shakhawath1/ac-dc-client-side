@@ -61,12 +61,12 @@ const AddReview = () => {
                     <textarea className="input input-bordered w-full mb-3" placeholder='Write here' type='text' {...register("review")} />
                     <label className="mb-1">Ratings</label>
                     <input className="input input-bordered w-full mb-3" type="number" placeholder='Ratings'  {...register("ratings")} required />
-                    {/* <div class="rating my-3">
-                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-                        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                    {/* <div className="rating my-3">
+                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
+                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
                     </div> */}
 
                     <input className='btn btn-accent' type="submit" value="add review" />

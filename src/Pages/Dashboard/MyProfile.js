@@ -36,14 +36,14 @@ const MyProfile = () => {
             <h2 className='text-3xl text-center mb-6'>My Profile</h2>
             <div>
                 <div>
-                    <img class="mask mask-squircle mx-auto" src={img} alt='' />
-                    <div class="card bg-base-100 shadow-xl lg:mx-20">
-                        <div class="card-body">
-                            <h2 class="card-title">{name}</h2>
+                    <img className="mask mask-squircle mx-auto" src={img} alt='' />
+                    <div className="card bg-base-100 shadow-xl lg:mx-20">
+                        <div className="card-body">
+                            <h2 className="card-title">{name}</h2>
                             <p>{email}</p>
                             <p>{phone}</p>
                             <p>{address}</p>
-                            <button onClick={() => navigateToEdit(email)} class="btn btn-outline btn-accent btn-xs w-40 mx-auto">Edit profile</button>
+                            <button onClick={() => navigateToEdit(email)} className="btn btn-outline btn-accent btn-xs w-40 mx-auto">Edit profile</button>
 
                         </div>
                     </div>

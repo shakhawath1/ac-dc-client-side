@@ -28,13 +28,14 @@ const EditProfile = () => {
         fetch(`https://sheltered-cliffs-05732.herokuapp.com/user/${email}`, {
             method: 'PUT',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(data)
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 if (data) {
                     toast.success('User information added successfully.')
                     reset();
