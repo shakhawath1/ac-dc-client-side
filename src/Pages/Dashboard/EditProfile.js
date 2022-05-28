@@ -54,7 +54,7 @@ const EditProfile = () => {
                 <h3 className='text-2xl text-slate-600 font-semibold text-center my-2'>User Information</h3>
                 <form className='d-flex flex-column form-control' onSubmit={handleSubmit(updateProfile)}>
                     <label className="mb-1">Name</label>
-                    <input className="input input-bordered w-full mb-3" value={user.name} type='text' {...register("name", { required: true, maxLength: 20 })} />
+                    <input className="input input-bordered w-full mb-3" value={user.name} type='text' {...register("name")} />
                     <label className="mb-1">Email</label>
                     <input className="input input-bordered w-full mb-3" value={user.email} type='text' {...register("email")} />
                     <label className="mb-1">Phone</label>

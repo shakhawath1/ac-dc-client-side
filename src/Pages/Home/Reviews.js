@@ -8,7 +8,7 @@ const Reviews = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data)
-                setReviews(data)
+                setReviews(data.slice(0, 6))
             })
     }, [])
 
