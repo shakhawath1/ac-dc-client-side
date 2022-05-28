@@ -6,7 +6,7 @@ const useProducts = () => {
     useEffect(() => {
         fetch('https://sheltered-cliffs-05732.herokuapp.com/product/')
             .then(res => res.json())
-            .then(data => setProducts(data.reverse()))
+            .then(data => setProducts(data))
     }, [])
 
 

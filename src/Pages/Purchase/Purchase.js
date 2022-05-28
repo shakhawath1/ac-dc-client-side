@@ -83,7 +83,7 @@ const Purchase = () => {
                             <input type="text" name='address' placeholder="Shipping adderss" className="input input-bordered w-full" required />
                             <div>
                                 <label className="my-2">Quantity</label>
-                                <input type="number" onBlur={searchQuantity} placeholder={minimum_order} className="input input-bordered w-full" />
+                                <input type="number" onBlur={searchQuantity} defaultValue={minimum_order} className="input input-bordered w-full" />
                             </div>
                             <div>
                                 <label className="mb-2">Total Price</label>

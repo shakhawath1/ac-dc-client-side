@@ -5,11 +5,9 @@ import { toast } from 'react-toastify';
 
 
 const AddProduct = () => {
-    // const [product, setProduct] = useState([])
-
     const { register, handleSubmit, reset } = useForm();
 
-    // make admin function
+    // add product function
     const addProduct = (data) => {
         console.log(data)
         fetch(`https://sheltered-cliffs-05732.herokuapp.com/product/`, {
@@ -28,12 +26,12 @@ const AddProduct = () => {
                 }
                 else {
                     toast.error('Failed to add the product!');
-                }
-            })
-    }
+                };
+            });
+    };
 
     return (
-        <div>
+        <div className='mx-2'>
             <h2 className='text-4xl text-lime-700 font-semibold text-center mt-8'>Add Product</h2>
             <div className="card bg-base-100 shadow-xl lg:w-2/4 md:w-3/4 mx-auto p-5 my-8">
                 <h3 className='text-2xl text-slate-600 font-semibold text-center my-2'>Product Information</h3>
